@@ -15,7 +15,9 @@ Upload and run the program.
 
 After some time you should observe messages like:
 
-ERROR inconsistent state: counter=21 double=40
+> ERROR inconsistent state: counter=21 double=40
+> ERROR inconsistent state: counter=RPC update: counter=1919 double= double=3836
+> ERROR inconsistent state: counter=27 double=RPC update: counter=5227 double=54
 
 This shows a race condition: `loop()` has read the variables while the RPC callback was updating them.
 
