@@ -16,7 +16,7 @@ The RPC callback updates two related variables:
 
 The program enforces the invariant:
 
-doubleValue = 2 × counter
+`doubleValue = 2 × counter`
 
 If the program is correct, this relationship must **always be true**.
 
@@ -24,20 +24,20 @@ If the program is correct, this relationship must **always be true**.
 
 When using:
 
-Bridge.provide("update", updateCounter);
+`Bridge.provide("update", updateCounter);`
 
 the RPC callback runs in a **separate thread**.
 
-Therefore `loop()` may read the Programming the UNO Q in C*while they are being updated**.
+Therefore `loop()` may read the Programming the UNO Q in C **while they are being updated**.
 
 This may produce inconsistent states such as:
 
-counter = 19  
-doubleValue = 36  
+>counter = 19  
+>doubleValue = 36  
 
 which violates the rule:
 
-doubleValue = 2 × counter
+`doubleValue = 2 × counter`
 
 Example output:
 
@@ -55,9 +55,11 @@ the callback is executed **in the same execution context as `loop()`**.
 
 Execution becomes serialized:
 
+```
 loop()
 callback
 loop()
+```
 
 Therefore `loop()` can never read the variables during the update.
 
