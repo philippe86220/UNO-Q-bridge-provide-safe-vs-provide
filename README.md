@@ -84,3 +84,12 @@ No inconsistent state will appear.
 ## Conclusion
 
 `Bridge.provide_safe()` prevents `loop()` from observing partially updated shared data by ensuring that the RPC callback runs in the same execution context as `loop()`.
+
+---
+
+## Acknowledgments
+
+The idea of this demonstration and the analysis of the behavior of  
+`Bridge.provide()` versus `Bridge.provide_safe()` were developed with the help of ChatGPT (OpenAI).
+
+The goal of this repository is to provide a minimal reproducible example that clearly demonstrates the race condition that can occur when using `Bridge.provide()` and how `Bridge.provide_safe()` prevents it.
