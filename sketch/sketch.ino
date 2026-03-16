@@ -23,7 +23,13 @@ void setup() {
 
   Bridge.begin();
   Monitor.begin();
+  
+  // --- Demonstration ---
+  // Replace the following line to compare behaviors
 
+  //Bridge.provide("update", updateCounter);        // unsafe version
+  //Bridge.provide_safe("update", updateCounter);     // safe version
+  
   Bridge.provide("update", updateCounter);   // remplacer par provide_safe pour le test
 }
 
