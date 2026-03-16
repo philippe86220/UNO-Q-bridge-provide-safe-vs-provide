@@ -1,3 +1,41 @@
+## How to reproduce the demonstration
+
+This repository demonstrates the difference between:
+
+- `Bridge.provide()` (unsafe)
+- `Bridge.provide_safe()` (thread-safe)
+
+### Step 1 — Run the unsafe version
+
+In `sketch.ino`, use:
+
+Bridge.provide("update", updateCounter);
+
+Upload and run the program.
+
+After some time you should observe messages like:
+
+ERROR inconsistent state: counter=21 double=40
+
+This shows a race condition: `loop()` has read the variables while the RPC callback was updating them.
+
+### Step 2 — Run the safe version
+
+Now replace the line with:
+
+Bridge.provide_safe("update", updateCounter);
+
+Upload and run the program again.
+
+The inconsistent state disappears.
+
+---
+
+### Conclusion
+
+`Bridge.provide_safe()` prevents the race condition because the callback is executed in the same execution context as `loop()`.
+
+
 # Bridge.provide_safe() vs Bridge.provide()
 
 This repository demonstrates the practical difference between:
