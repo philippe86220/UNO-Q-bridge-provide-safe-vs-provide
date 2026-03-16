@@ -11,8 +11,8 @@ in the Arduino UNO-Q RouterBridge architecture.
 
 The RPC callback updates two related variables:
 
-counter
-doubleValue
+- `counter`
+- `doubleValue`
 
 The program enforces the invariant:
 
@@ -28,7 +28,7 @@ Bridge.provide("update", updateCounter);
 
 the RPC callback runs in a **separate thread**.
 
-Therefore `loop()` may read the variables **while they are being updated**.
+Therefore `loop()` may read the Programming the UNO Q in C*while they are being updated**.
 
 This may produce inconsistent states such as:
 
