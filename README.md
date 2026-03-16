@@ -37,6 +37,7 @@ The inconsistent state disappears.
 
 `Bridge.provide_safe()` prevents the race condition because the callback is executed in the same execution context as `loop()`.
 
+---
 
 # Bridge.provide_safe() vs Bridge.provide()
 
