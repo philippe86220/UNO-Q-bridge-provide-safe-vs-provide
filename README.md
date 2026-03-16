@@ -39,9 +39,31 @@ which violates the rule:
 
 `doubleValue = 2 × counter`
 
-Example output:
+---
+
+With `Bridge.provide()`, the RPC callback runs in a separate thread.
+
+In this demonstrator, both the callback and `loop()` write to `Monitor`.
+As a result, the serial output may become interleaved.
+
+So, instead of a clean message such as:
 
 ERROR inconsistent state: counter=19 double=36
+
+the real output may look like this:
+
+ERROR inconsistent state: counter=RPC update: counter=1919 double= double=3836
+
+This happens because two execution contexts are writing to `Monitor` at the same time.
+
+If we separate the two interleaved messages, we can understand them as:
+
+ERROR inconsistent state: counter=19 double=36
+RPC update: counter=19 double=38
+
+This shows two things:
+1. shared data may be observed in an inconsistent state
+2. `Monitor` output itself may also become corrupted by concurrent access
 
 This demonstrates a **race condition**.
 
